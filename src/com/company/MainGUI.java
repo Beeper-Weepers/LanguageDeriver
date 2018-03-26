@@ -45,8 +45,8 @@ public class MainGUI extends JFrame implements ActionListener {
     JPanel mainPanel; //Overarching mainPanel
     JButton generateButton; //Button to generate a word
     JLabel loadedText; //Text displaying status of loading
-    JFormattedTextField minMorphemes;
-    JFormattedTextField maxMorphemes;
+    JFormattedTextField minPrefixes;
+    JFormattedTextField maxPrefixes;
     JLabel displayedWord; //Panel to display the results of the derivation process
 
     //Constructor
@@ -85,26 +85,26 @@ public class MainGUI extends JFrame implements ActionListener {
 
         //Make a minimum morphemes text field
         JLabel minMorphLabel = new JLabel("Minimum Morphemes: ");
-        minMorphLabel.setLabelFor(minMorphemes);
+        minMorphLabel.setLabelFor(minPrefixes);
         minMorphLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        minMorphemes = new JFormattedTextField(formatter);
-        minMorphemes.setMaximumSize(morphBoxSize);
-        minMorphemes.setAlignmentX(Component.CENTER_ALIGNMENT);
+        minPrefixes = new JFormattedTextField(formatter);
+        minPrefixes.setMaximumSize(morphBoxSize);
+        minPrefixes.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Make a maximum morphemes text field
         JLabel maxMorphLabel = new JLabel("Maximum Morphemes: ");
-        maxMorphLabel.setLabelFor(minMorphemes);
+        maxMorphLabel.setLabelFor(minPrefixes);
         maxMorphLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        maxMorphemes = new JFormattedTextField(formatter);
-        maxMorphemes.setMaximumSize(morphBoxSize);
-        maxMorphemes.setAlignmentX(Component.CENTER_ALIGNMENT);
+        maxPrefixes = new JFormattedTextField(formatter);
+        maxPrefixes.setMaximumSize(morphBoxSize);
+        maxPrefixes.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Layout
         mainPanel.add(loadedText);
         mainPanel.add(minMorphLabel);
-        mainPanel.add(minMorphemes);
+        mainPanel.add(minPrefixes);
         mainPanel.add(maxMorphLabel);
-        mainPanel.add(maxMorphemes);
+        mainPanel.add(maxPrefixes);
         mainPanel.add(generateButton);
         mainPanel.add(Box.createVerticalStrut(64));
         mainPanel.add(displayedWord);
@@ -123,6 +123,9 @@ public class MainGUI extends JFrame implements ActionListener {
     public void linkDeriver(Deriver deriver) {
         this.deriver = deriver;
         loadedText.setText("Morphology template loaded from " + lastFileLoaded);
+
+        minPrefixes.setText(String.valueOf(deriver.getMinPrefixes()));
+        maxPrefixes.setText(String.valueOf(deriver.getMaxPrefixes()));
     }
 
 
@@ -130,10 +133,15 @@ public class MainGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == generateButton && deriver != null) {
+            updateDeriver();
             displayedWord.setText(deriver.makeDerivedWord());
         }
     }
 
+    private void updateDeriver() {
+        deriver.setMinPrefixes(Integer.valueOf(minPrefixes.getText()));
+        deriver.setMaxPrefixes(Integer.valueOf(maxPrefixes.getText()));
+    }
 
     //Categories for set loading
     enum Category {
