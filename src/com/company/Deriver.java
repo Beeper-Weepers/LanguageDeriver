@@ -14,11 +14,19 @@ public class Deriver {
     private int maxSuffixes = 1;
     private int minSuffixes = 1;
 
+
+    //Accessors
     public int getMaxPrefixes() { return maxPrefixes; }
     public int getMinPrefixes() { return minPrefixes; }
     public void setMaxPrefixes(int morphs) { maxPrefixes = morphs; }
     public void setMinPrefixes(int morphs) { minPrefixes = morphs; }
+    public int getMaxSuffixes() { return maxSuffixes; }
+    public int getMinSuffixes() { return maxSuffixes; }
+    public void setMaxSuffixes(int morphs) { maxSuffixes = morphs; }
+    public void setMinSuffixes(int morphs) { maxSuffixes = morphs; }
 
+
+    //Constructor
     public Deriver(ArrayList<String> roots, ArrayList<String> prefixes, ArrayList<String> suffixes) {
         rootSet = roots;
         prefixSet = prefixes;
@@ -34,6 +42,9 @@ public class Deriver {
 
         return word.toString();
     }
+
+
+    //Helper methods
 
     public void addMorphemesToBuilder(StringBuilder builder, int minMorphs, int maxMorphs, boolean append) {
         int i;
@@ -53,8 +64,6 @@ public class Deriver {
             }
         }
     }
-
-    //Helper methods
 
     private String pickRandomFrom(ArrayList<String> list) {
         return list.get(ThreadLocalRandom.current().nextInt(list.size()));
