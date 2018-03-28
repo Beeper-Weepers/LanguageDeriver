@@ -1,29 +1,39 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SCA {
     private final char seper = '/'; //Separator indicator
     private final char starter = '('; //Start line indicator
     private final char ender = ')'; //End line indicator
+    private final char varEquals = '=';
 
-    private ArrayList<String[]> userVariables;
+    private ArrayList<String> userVariables;
+    private HashMap<String, char[]> userVarsMap;
     private ArrayList<String[]> userRules;
 
 
     public SCA() {
         userVariables = new ArrayList<>();
+        userRules = new ArrayList<>();
+        userVarsMap = new HashMap<>();
     }
 
     public String morphWord(String baseWord) {
+        StringBuilder word = new StringBuilder(baseWord);
+
         //TODO: Apply rules
 
-        return baseWord;
+        return word.toString();
     }
 
     /*Return int for error code
         0 - normal
-        1 - incorrect quantity of separators
+        Rules:
+            1 - incorrect quantity of separators
+        Variables:
+            1 - Variable name longer than one character
     */
 
     //Adding functions
@@ -42,15 +52,19 @@ public class SCA {
     }
 
     public int addVariable(String varStr) {
-        varStr = varStr.trim();
+        varStr = varStr.replaceAll(" ", "");
 
-        String[] varA = varStr.split("/");
-
-        if (varA.length != 3) {
+        int sepPoint = varStr.indexOf(varEquals);
+        //Variable must be only one character long
+        if (sepPoint == 1) {
+            String varName = varStr.substring(0, sepPoint);
+            char[] variableConstituents = varStr.substring(sepPoint + 1).toCharArray();
+            userVariables.add(varName);
+            userVarsMap.put(varName, variableConstituents);
+        } else {
             return 1;
         }
 
-        userVariables.add(varA);
         return 0;
     }
 
@@ -76,7 +90,7 @@ public class SCA {
             return 1;
         }
 
-        userVariables.add(ruleA);
+        userRules.add(ruleA);
         return 0;
     }
 }
