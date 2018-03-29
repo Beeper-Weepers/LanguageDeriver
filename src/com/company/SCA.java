@@ -7,6 +7,7 @@ public class SCA {
     private final char seper = '/'; //Separator indicator
     private final char starter = '('; //Start line indicator
     private final char ender = ')'; //End line indicator
+    private final char target = '_'; //Target reference indicator in the environment
     private final char varEquals = '=';
 
     private ArrayList<String> userVariables;
@@ -20,13 +21,34 @@ public class SCA {
         userVarsMap = new HashMap<>();
     }
 
+
     public String morphWord(String baseWord) {
         StringBuilder word = new StringBuilder(baseWord);
 
         //TODO: Apply rules
+        for (int i = 0; i < userRules.size(); i++) {
+            String[] rule = userRules.get(i);
+
+            //TODO: Decide where to start analyzing
+            int loopType = 0; //0 - normal (pass-through), 1 - start, 2 - end
+            for (int j = 0; j < rule[2].length(); i++) {
+                char c = rule[2].charAt(j);
+                if (c == starter) {
+                    loopType = 1;
+                } else if (c == ender) {
+                    loopType = 2;
+                }
+            }
+
+            //TODO: Calculate and store rule parts for later checking the word
+            //TODO: Check each part of word for match
+
+            //TODO: Replace with replacement
+        }
 
         return word.toString();
     }
+
 
     /*Return int for error code
         0 - normal
@@ -82,15 +104,26 @@ public class SCA {
     }
 
     public int addRule(String ruleStr) {
-        ruleStr = ruleStr.trim();
+        ruleStr = ruleStr.replaceAll(" ", "");
 
         String[] ruleA = ruleStr.split("/");
 
-        if (ruleA.length != 3) {
+        //Return an error if the length is not correct or an identifier is not present
+        if (ruleA.length != 3 || (countOccurrences(ruleA[2], target) != 1 && countOccurrences(ruleA[2], starter) != 1 && countOccurrences(ruleA[2], ender) != 1)) {
             return 1;
         }
 
         userRules.add(ruleA);
         return 0;
+    }
+
+    private static int countOccurrences(String haystack, char needle) {
+        int count = 0;
+        for (int i=0; i < haystack.length(); i++) {
+            if (haystack.charAt(i) == needle) {
+                count++;
+            }
+        }
+        return count;
     }
 }
