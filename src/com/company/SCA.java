@@ -5,8 +5,7 @@ import java.util.HashMap;
 
 public class SCA {
     private final char seper = '/'; //Separator indicator
-    private final char starter = '('; //Start line indicator
-    private final char ender = ')'; //End line indicator
+    private final char placer = '#'; //Position indicator
     private final char target = '_'; //Target reference indicator in the environment
     private final char varEquals = '=';
 
@@ -29,19 +28,42 @@ public class SCA {
         for (int i = 0; i < userRules.size(); i++) {
             String[] rule = userRules.get(i);
 
-            //TODO: Decide where to start analyzing
-            int loopType = 0; //0 - normal (pass-through), 1 - start, 2 - end
+            String ruleLoc = rule[2];
+            int loopType = 0; //How to loop through the string. 0 - normal (pass-through), 1 - start, 2 - end
+            int targetLocation = -1; //Location of target in the rule (the default is nowhere)
+            //Collect loopType, targetLocation and modify rule for simplification
             for (int j = 0; j < rule[2].length(); i++) {
                 char c = rule[2].charAt(j);
-                if (c == starter) {
-                    loopType = 1;
-                } else if (c == ender) {
-                    loopType = 2;
+                if (c == placer) {
+                    //Set the loop type based on where targetLocation has been set yet
+                    if (targetLocation == -1) {
+                        loopType = 1;
+                    } else {
+                        loopType = 2;
+                    }
+                    //Delete the placer part in the ruleLoc string
+                    stringDelete(ruleLoc, j--);
+                } else if (c == target) {
+                    targetLocation = j;
                 }
             }
 
-            //TODO: Calculate and store rule parts for later checking the word
             //TODO: Check each part of word for match
+            //Calculate widths on either side of target
+            int lL = targetLocation;
+            int rL = word.length() - (targetLocation + 1);
+
+            int j = lL;
+            int range = word.length() - rL;
+            int dir = 1;
+            if (loopType == 1) {
+                range = Math.min(1, range);
+            } else if (loopType == 2) {
+
+            }
+            for (; j < range; j += dir) {
+
+            }
 
             //TODO: Replace with replacement
         }
@@ -54,13 +76,18 @@ public class SCA {
         0 - normal
         Rules:
             1 - incorrect quantity of separators
+            2 - No target present
+            3 - Too many positional informants
         Variables:
             1 - Variable name longer than one character
     */
 
     //Adding functions
 
-    public int addVariables(String varsStr) {
+    public int setVariables(String varsStr) {
+        userVariables.clear();
+        userVarsMap.clear();
+
         String[] rulesA = varsStr.split("\n");
         for (int i = 0; i < rulesA.length; i++) {
             int varRes = addVariable(rulesA[i]);
@@ -90,7 +117,9 @@ public class SCA {
         return 0;
     }
 
-    public int addRules(String rulesStr) {
+    public int setRules(String rulesStr) {
+        userRules.clear();
+
         String[] rulesA = rulesStr.split("\n");
         for (int i = 0; i < rulesA.length; i++) {
             int rulRes = addRule(rulesA[i]);
@@ -109,17 +138,27 @@ public class SCA {
         String[] ruleA = ruleStr.split("/");
 
         //Return an error if the length is not correct or an identifier is not present
-        if (ruleA.length != 3 || (countOccurrences(ruleA[2], target) != 1 && countOccurrences(ruleA[2], starter) != 1 && countOccurrences(ruleA[2], ender) != 1)) {
+        if (ruleA.length != 3 || countOccurrences(ruleA[2], target) != 1) {
             return 1;
+        }
+
+        //Return an error if too many starters or enders are present
+        int startCount = countOccurrences(ruleA[2], placer);
+        if (startCount > 1) {
+            return 2;
         }
 
         userRules.add(ruleA);
         return 0;
     }
 
+    private static String stringDelete(String str, int pos) {
+        return str.substring(0, pos) + str.substring(pos + 1, str.length() - 1);
+    }
+
     private static int countOccurrences(String haystack, char needle) {
         int count = 0;
-        for (int i=0; i < haystack.length(); i++) {
+        for (int i = 0; i < haystack.length(); i++) {
             if (haystack.charAt(i) == needle) {
                 count++;
             }
