@@ -34,26 +34,30 @@ public class MainGUI extends JFrame implements ActionListener {
         //Create a deriver object and give it to the MainGUI
         gui.linkDeriver(new Deriver(rootSet, prefixSet, suffixSet));
 
+        //Create a SCA object and give it to the MainGUI (which gives it to the deriver)
+        gui.linkSCA(new SCA());
+
         //After this, leave it up to the MainGUI gui instance!
     }
 
 
     //Fields
-    Deriver deriver = null;
-    String lastFileLoaded;
+    private Deriver deriver = null;
+    private String lastFileLoaded;
+    private SCA sca;
 
     //Component Fields
-    JPanel mainPanel; //Overarching mainPanel
-    JButton generateButton; //Button to generate a word
-    JLabel loadedText; //Text displaying status of loading
-    JFormattedTextField minPrefixes;
-    JFormattedTextField maxPrefixes;
-    JFormattedTextField minSuffixes;
-    JFormattedTextField maxSuffixes;
-    JLabel displayedWord; //Label to display the results of the derivation process
-    JLabel errorMessage; //Label to display possible errors
-    JTextArea variableArea;
-    JTextArea rulesArea;
+    private JPanel mainPanel; //Overarching mainPanel
+    private JButton generateButton; //Button to generate a word
+    private JLabel loadedText; //Text displaying status of loading
+    private JFormattedTextField minPrefixes;
+    private JFormattedTextField maxPrefixes;
+    private JFormattedTextField minSuffixes;
+    private JFormattedTextField maxSuffixes;
+    private JLabel displayedWord; //Label to display the results of the derivation process
+    private JLabel errorMessage; //Label to display possible errors
+    private JTextArea variableArea;
+    private JTextArea rulesArea;
 
     //Constructor
     public MainGUI() {
@@ -140,12 +144,15 @@ public class MainGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null); //Centers window
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Tell application to close on window close
         setVisible(true);
+
+        //Set up the SCA
+        sca = new SCA();
     }
 
 
-    Dimension labelJFTDimension = new Dimension(64, 24);
+    private Dimension labelJFTDimension = new Dimension(64, 24);
 
-    public JFormattedTextField createLabelJFT(JPanel labelJFTPanel, NumberFormatter formatter, String text) {
+    private JFormattedTextField createLabelJFT(JPanel labelJFTPanel, NumberFormatter formatter, String text) {
         labelJFTPanel.setLayout(new FlowLayout());
 
         //Make the formatted text field
@@ -164,9 +171,10 @@ public class MainGUI extends JFrame implements ActionListener {
         return textField;
     }
 
-    Dimension labelJTADimension = new Dimension(256, 64);
 
-    public JTextArea createLabelJTA(JPanel labelJTAPanel, String text) {
+    private Dimension labelJTADimension = new Dimension(256, 64);
+
+    private JTextArea createLabelJTA(JPanel labelJTAPanel, String text) {
         labelJTAPanel.setLayout(new FlowLayout());
 
         //Make the formatted text field
@@ -186,6 +194,7 @@ public class MainGUI extends JFrame implements ActionListener {
         return textField;
     }
 
+
     //Give the MainGUI instance a deriver object
     public void linkDeriver(Deriver deriver) {
         this.deriver = deriver;
@@ -196,6 +205,15 @@ public class MainGUI extends JFrame implements ActionListener {
 
         minSuffixes.setText(String.valueOf(deriver.getMinSuffixes()));
         maxSuffixes.setText(String.valueOf(deriver.getMaxSuffixes()));
+    }
+
+
+    //Give the MainGUI instance and the Deriver a SCA object
+    public void linkSCA(SCA sca) {
+        this.sca = sca;
+        if (deriver != null) {
+            deriver.linkSCA(sca);
+        }
     }
 
 
@@ -212,6 +230,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
     //Return true if error
     private boolean updateDeriver() {
+        //Prefix and suffix limits
         int minPer = Integer.valueOf(minPrefixes.getText());
         int maxPer = Integer.valueOf(maxPrefixes.getText());
         int minSuf = Integer.valueOf(minSuffixes.getText());
@@ -232,6 +251,28 @@ public class MainGUI extends JFrame implements ActionListener {
         deriver.setMinSuffixes(minSuf);
         deriver.setMaxSuffixes(maxSuf);
 
+        //Variables
+        int userVarRes = sca.setVariables(variableArea.getText());
+
+        if (userVarRes == 1) {
+            errorMessage.setText("A variable name is too long");
+            return true;
+        }
+
+        //Rules
+        int userRuleRes = sca.setRules(rulesArea.getText());
+
+        if (userRuleRes == 1) {
+            errorMessage.setText("A rule has too many or too few separators");
+            return true;
+        } else if (userRuleRes == 2) {
+            errorMessage.setText("No target present in the environment");
+            return true;
+        } else if (userRuleRes == 3) {
+            errorMessage.setText("Too many or too few position markers");
+            return true;
+        }
+
         //Derivation update complete with no errors, reset error message
         errorMessage.setText("");
         return false;
@@ -247,7 +288,7 @@ public class MainGUI extends JFrame implements ActionListener {
     }
 
     //Returns a error code (0 for no errors, 1 for errors or problems)
-    public int fillSets(File file, ArrayList<String> rootSet, ArrayList<String> preSet, ArrayList<String> suffixSet) {
+    private int fillSets(File file, ArrayList<String> rootSet, ArrayList<String> preSet, ArrayList<String> suffixSet) {
         //If cancelled or other issues
         if (file == null) {
             return 1;

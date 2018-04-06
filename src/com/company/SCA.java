@@ -4,71 +4,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SCA {
-    private final char seper = '/'; //Separator indicator
+    private final String seper = "/"; //Separator indicator
     private final char placer = '#'; //Position indicator
     private final char target = '_'; //Target reference indicator in the environment
     private final char varEquals = '=';
 
-    private ArrayList<String> userVariables;
-    private HashMap<String, char[]> userVarsMap;
-    private ArrayList<String[]> userRules;
+    //This system requires that rules be processed after variables
+    private HashMap<String, StringBuilder> userVarsMap;
+    private ArrayList<String> userRulesPattern;
+    private ArrayList<String> userRulesMatch;
 
 
-    public SCA() {
-        userVariables = new ArrayList<>();
-        userRules = new ArrayList<>();
+    SCA() {
+        userRulesPattern = new ArrayList<>();
+        userRulesMatch = new ArrayList<>();
         userVarsMap = new HashMap<>();
     }
 
 
     public String morphWord(String baseWord) {
-        StringBuilder word = new StringBuilder(baseWord);
+        String word = baseWord;
 
-        //TODO: Apply rules
-        for (int i = 0; i < userRules.size(); i++) {
-            String[] rule = userRules.get(i);
-
-            String ruleLoc = rule[2];
-            int loopType = 0; //How to loop through the string. 0 - normal (pass-through), 1 - start, 2 - end
-            int targetLocation = -1; //Location of target in the rule (the default is nowhere)
-            //Collect loopType, targetLocation and modify rule for simplification
-            for (int j = 0; j < rule[2].length(); i++) {
-                char c = rule[2].charAt(j);
-                if (c == placer) {
-                    //Set the loop type based on where targetLocation has been set yet
-                    if (targetLocation == -1) {
-                        loopType = 1;
-                    } else {
-                        loopType = 2;
-                    }
-                    //Delete the placer part in the ruleLoc string
-                    stringDelete(ruleLoc, j--);
-                } else if (c == target) {
-                    targetLocation = j;
-                }
-            }
-
-            //TODO: Check each part of word for match
-            //Calculate widths on either side of target
-            int lL = targetLocation;
-            int rL = word.length() - (targetLocation + 1);
-
-            int j = lL;
-            int range = word.length() - rL;
-            int dir = 1;
-            if (loopType == 1) {
-                range = Math.min(1, range);
-            } else if (loopType == 2) {
-
-            }
-            for (; j < range; j += dir) {
-
-            }
-
-            //TODO: Replace with replacement
+        for (int i = 0; i < userRulesPattern.size(); i++) {
+            word = word.replaceAll(userRulesPattern.get(i), userRulesMatch.get(i));
         }
 
-        return word.toString();
+        return word;
     }
 
 
@@ -85,14 +46,16 @@ public class SCA {
     //Adding functions
 
     public int setVariables(String varsStr) {
-        userVariables.clear();
         userVarsMap.clear();
 
+        if (varsStr.isEmpty()) { return 0; }
+
         String[] rulesA = varsStr.split("\n");
-        for (int i = 0; i < rulesA.length; i++) {
-            int varRes = addVariable(rulesA[i]);
+
+        for (String rule : rulesA) {
+            int varRes = addVariable(rule);
             if (varRes != 0) {
-                userVariables.clear();
+                userVarsMap.clear();
                 return varRes;
             }
         }
@@ -107,8 +70,8 @@ public class SCA {
         //Variable must be only one character long
         if (sepPoint == 1) {
             String varName = varStr.substring(0, sepPoint);
-            char[] variableConstituents = varStr.substring(sepPoint + 1).toCharArray();
-            userVariables.add(varName);
+            StringBuilder variableConstituents = new StringBuilder(varStr.substring(sepPoint + 1));
+            variableConstituents.append("]"); variableConstituents.insert(0, "[");
             userVarsMap.put(varName, variableConstituents);
         } else {
             return 1;
@@ -118,13 +81,17 @@ public class SCA {
     }
 
     public int setRules(String rulesStr) {
-        userRules.clear();
+        userRulesPattern.clear();
+        userRulesMatch.clear();
+
+        if (rulesStr.isEmpty()) { return 0; }
 
         String[] rulesA = rulesStr.split("\n");
-        for (int i = 0; i < rulesA.length; i++) {
-            int rulRes = addRule(rulesA[i]);
+        for (String rule : rulesA) {
+            int rulRes = addRule(rule);
             if (rulRes != 0) {
-                userRules.clear();
+                userRulesPattern.clear();
+                userRulesMatch.clear();
                 return rulRes;
             }
         }
@@ -135,26 +102,101 @@ public class SCA {
     public int addRule(String ruleStr) {
         ruleStr = ruleStr.replaceAll(" ", "");
 
-        String[] ruleA = ruleStr.split("/");
+        String[] ruleA = ruleStr.split(seper);
 
-        //Return an error if the length is not correct or an identifier is not present
-        if (ruleA.length != 3 || countOccurrences(ruleA[2], target) != 1) {
+        //Return an error if the length is not correct
+        if (ruleA.length != 3) {
             return 1;
+        }
+
+        //Return an error if an identifier is not present
+        if (countOccurrences(ruleA[2], target) != 1) {
+            return 2;
         }
 
         //Return an error if too many starters or enders are present
         int startCount = countOccurrences(ruleA[2], placer);
         if (startCount > 1) {
-            return 2;
+            return 3;
         }
 
-        userRules.add(ruleA);
+
+        //Construct regex expression (both halves) based on this rule
+
+
+        StringBuilder ruleMatch = new StringBuilder();
+        StringBuilder ruleReplace = new StringBuilder();
+
+        //Generate regex match pattern from environment
+        int targetPos = -1; //Position of target character in the environment string
+        for (int i = 0; i < ruleA[2].length(); i++) {
+            char c = ruleA[2].charAt(i);
+            StringBuilder userVarCons = userVarsMap.get(String.valueOf(c)); //User variable constituents
+            //Appending the 'variable' to the match string
+            if (userVarCons != null) {
+                ruleMatch.append(userVarCons);
+            } else if (c == target) {
+                targetPos = ruleMatch.length();
+            }
+            //Replaces the "placer" char with a regex equivalent
+            else if (c == placer) {
+                //If before target
+                if (targetPos == -1) {
+                    ruleMatch.append('^');
+                }
+                //If after target
+                else {
+                    ruleMatch.append('$');
+                }
+            } else {
+                ruleMatch.append(c);
+            }
+        }
+
+        //Build target regex expression
+        StringBuilder ruleTarget = new StringBuilder();
+        for (int i = 0; i < ruleA[0].length(); i++) {
+            char c = ruleA[0].charAt(i);
+            //Replace variables with variable constituents
+            StringBuilder userVarCons = userVarsMap.get(String.valueOf(c)); //User variable constituents
+            if (userVarCons != null) {
+                ruleTarget.append(userVarCons);
+            } else {
+                ruleTarget.append(c);
+            }
+        }
+        ruleTarget.append(')'); ruleTarget.insert(0, '(');  //Convert to capture group
+
+        //Insert target regex into environment regex to create a complete match regex
+        ruleMatch.insert(targetPos, ruleTarget);
+
+        //Generate replace regex
+        ruleReplace = new StringBuilder(ruleA[1]);
+
+
+        System.out.println(ruleMatch.toString());
+        System.out.println(ruleReplace.toString());
+
+
+        //Add regex strings to lists
+        userRulesPattern.add(ruleMatch.toString());
+        userRulesMatch.add(ruleReplace.toString());
+
         return 0;
+    }
+
+    //Helpers
+
+    /*private static boolean arrayContains(ArrayList<String> a, String t) {
+        for (String item : a) {
+            if (item.equals(t)) { return true; }
+        }
+        return false;
     }
 
     private static String stringDelete(String str, int pos) {
         return str.substring(0, pos) + str.substring(pos + 1, str.length() - 1);
-    }
+    }*/
 
     private static int countOccurrences(String haystack, char needle) {
         int count = 0;

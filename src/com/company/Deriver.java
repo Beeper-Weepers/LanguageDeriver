@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Deriver {
-    ArrayList<String> rootSet;
-    ArrayList<String> prefixSet;
-    ArrayList<String> suffixSet;
+    private SCA sca;
+
+    private ArrayList<String> rootSet;
+    private ArrayList<String> prefixSet;
+    private ArrayList<String> suffixSet;
 
     private int maxPrefixes = 1;
     private int minPrefixes = 1;
@@ -33,20 +35,26 @@ public class Deriver {
         suffixSet = suffixes;
     }
 
+    public void linkSCA(SCA sca) {
+        this.sca = sca;
+    }
+
     //Main function, creates a derived word based on loaded sets
     public String makeDerivedWord() {
-        StringBuilder word = new StringBuilder(pickRandomFrom(rootSet));
+        StringBuilder baseWord = new StringBuilder(pickRandomFrom(rootSet));
 
-        addMorphemesToBuilder(word, minPrefixes, maxPrefixes, false);
-        addMorphemesToBuilder(word, minSuffixes, maxSuffixes, true);
+        addMorphemesToBuilder(baseWord, minPrefixes, maxPrefixes, false);
+        addMorphemesToBuilder(baseWord, minSuffixes, maxSuffixes, true);
 
-        return word.toString();
+        String word = sca.morphWord(baseWord.toString());
+
+        return word;
     }
 
 
     //Helper methods
 
-    public void addMorphemesToBuilder(StringBuilder builder, int minMorphs, int maxMorphs, boolean append) {
+    private void addMorphemesToBuilder(StringBuilder builder, int minMorphs, int maxMorphs, boolean append) {
         int i;
         if (minMorphs == maxMorphs) {
             i = maxMorphs;
