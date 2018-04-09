@@ -52,23 +52,20 @@ public class Deriver {
 
         //Create new array for wordMorphemesOut
         String[] wordMorphemesOut = new String[prefixes + suffixes + 1];
-        int place = 0;
         wordMorphemesOut[wordMorphemesOut.length - (suffixes + 1)] = baseWord.toString();
 
         //Prefix adding
-        for (; prefixes > 0; prefixes--) {
+        for (int i = 0; i < prefixes; i++) {
             String pre = pickRandomFrom(prefixSet);
             baseWord.insert(0, pre);
-            wordMorphemesOut[place++] = pre;
+            wordMorphemesOut[prefixes - (i + 1)] = pre;
         }
 
-        place++; //Skip for base word
-
         //Suffix adding
-        for (; suffixes > 0; suffixes--) {
+        for (int i = 0; i < suffixes; i++) {
             String suf = pickRandomFrom(suffixSet);
             baseWord.append(suf);
-            wordMorphemesOut[place++] = suf;
+            wordMorphemesOut[prefixes + 1 + i] = suf;
         }
 
         //Convert from StringBuilder to String and run through the SCA
@@ -83,11 +80,7 @@ public class Deriver {
     //Helper methods
 
     private int getRandom(int min, int max) {
-        if (min == max) {
-            return min;
-        } else {
-            return ThreadLocalRandom.current().nextInt(min, max);
-        }
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
     private String pickRandomFrom(ArrayList<String> list) {

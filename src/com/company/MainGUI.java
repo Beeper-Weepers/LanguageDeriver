@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.datatransfer.*;
+import java.awt.Toolkit;
 
 
 /*      Features we want to add:
@@ -68,6 +70,7 @@ public class MainGUI extends JFrame implements ActionListener {
     private JTextArea variableArea;
     private JTextArea rulesArea;
     private JLabel wordParts;
+    private JButton copyButton;
 
     //Constructor
     public MainGUI() {
@@ -102,6 +105,11 @@ public class MainGUI extends JFrame implements ActionListener {
         errorMessage = new JLabel();
         errorMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
         errorMessage.setForeground(Color.red);
+
+        //Make a button to copy text to clipboard
+        copyButton = new JButton("Copy to Clipboard");
+        copyButton.addActionListener(this); //Hook up to actionPerformed()
+        copyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Setup for text boxes
         NumberFormat format = NumberFormat.getInstance();
@@ -149,6 +157,7 @@ public class MainGUI extends JFrame implements ActionListener {
         mainPanel.add(varPanel); //SCA User variables
         mainPanel.add(rulePanel); //SCA User rules
 
+        mainPanel.add(copyButton); //Copy to clipboard button
         mainPanel.add(generateButton); //Button to generate words
         mainPanel.add(Box.createVerticalStrut(32));
         mainPanel.add(displayedWord);
@@ -236,7 +245,8 @@ public class MainGUI extends JFrame implements ActionListener {
     //Evaluate actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == generateButton && deriver != null) {
+        Object source = e.getSource();
+        if (source == generateButton && deriver != null) {
             if (updateDeriver()) {
                 return; //If error, exit
             }
@@ -249,6 +259,11 @@ public class MainGUI extends JFrame implements ActionListener {
             }
 
             wordParts.setText("<html><div style = 'text-align: center;'> Derived from:  <br>" + partsStr + "</div></html>");
+        } else if (source == copyButton && !displayedWord.getText().isEmpty()) {
+            //Copy to clipboard
+            StringSelection stringSelection = new StringSelection(displayedWord.getText());
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
         }
     }
 
