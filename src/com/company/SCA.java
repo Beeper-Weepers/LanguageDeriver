@@ -14,19 +14,19 @@ public class SCA {
     private ArrayList<String> userRulesPattern;
     private ArrayList<String> userRulesMatch;
 
-
+    //Constructor
     SCA() {
         userRulesPattern = new ArrayList<>();
         userRulesMatch = new ArrayList<>();
         userVarsMap = new HashMap<>();
     }
 
-
+    //Main public interaction method
     public String morphWord(String baseWord) {
         String word = baseWord;
 
         for (int i = 0; i < userRulesPattern.size(); i++) {
-            word = word.replaceAll(userRulesPattern.get(i), userRulesMatch.get(i));
+            word = word.replaceAll(userRulesPattern.get(i), "$1" + userRulesMatch.get(i) + "$2");
         }
 
         return word;
@@ -63,7 +63,7 @@ public class SCA {
         return 0;
     }
 
-    public int addVariable(String varStr) {
+    private int addVariable(String varStr) {
         varStr = varStr.replaceAll(" ", "");
 
         int sepPoint = varStr.indexOf(varEquals);
@@ -99,7 +99,7 @@ public class SCA {
         return 0;
     }
 
-    public int addRule(String ruleStr) {
+    private int addRule(String ruleStr) {
         ruleStr = ruleStr.replaceAll(" ", "");
 
         String[] ruleA = ruleStr.split(seper);
@@ -165,18 +165,23 @@ public class SCA {
                 ruleTarget.append(c);
             }
         }
-        ruleTarget.append(')'); ruleTarget.insert(0, '(');  //Convert to capture group
+
+        //Create capture group facing outside
+        ruleTarget.insert(0, ')');
+        ruleTarget.append('(');
 
         //Insert target regex into environment regex to create a complete match regex
         ruleMatch.insert(targetPos, ruleTarget);
 
+        //Create capture group from inside the rule match
+        ruleMatch.insert(0, '(');
+        ruleMatch.append(')');
+
         //Generate replace regex
         ruleReplace = new StringBuilder(ruleA[1]);
 
-
-        System.out.println(ruleMatch.toString());
-        System.out.println(ruleReplace.toString());
-
+        //System.out.println(ruleMatch.toString());
+        //System.out.println(ruleReplace.toString());
 
         //Add regex strings to lists
         userRulesPattern.add(ruleMatch.toString());

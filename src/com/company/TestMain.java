@@ -2,7 +2,7 @@ package com.company;
 
 public class TestMain {
     public static void main(String[] args) {
-        SCA sca = new SCA();
+        /*SCA sca = new SCA();
 
         int res = sca.addVariable("C=nmt");
         if (res != 0) {
@@ -18,6 +18,6 @@ public class TestMain {
 
         String morph = sca.morphWord("map");
 
-        System.out.println(morph);
+        System.out.println(morph);*/
     }
 }

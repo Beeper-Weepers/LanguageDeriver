@@ -12,6 +12,15 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/*      Features we want to add:
+    * Rule application percentage chances for sporadic sound changes
+    * User variable support in the replacement of rules
+    * Copying word to clipboard
+    * Allow for part definition in file
+    * Allow for scrolling in rules and variables
+*/
+
 public class MainGUI extends JFrame implements ActionListener {
 
     //Main entry point
@@ -58,6 +67,7 @@ public class MainGUI extends JFrame implements ActionListener {
     private JLabel errorMessage; //Label to display possible errors
     private JTextArea variableArea;
     private JTextArea rulesArea;
+    private JLabel wordParts;
 
     //Constructor
     public MainGUI() {
@@ -81,7 +91,12 @@ public class MainGUI extends JFrame implements ActionListener {
         //Make a label to display results on
         displayedWord = new JLabel();
         displayedWord.setAlignmentX(Component.CENTER_ALIGNMENT);
-        displayedWord.setFont(new Font("Serif", Font.PLAIN, 24));
+        displayedWord.setFont(new Font("Serif", Font.PLAIN, 38));
+
+        //Makes a label to display word parts on
+        wordParts = new JLabel("", SwingConstants.CENTER);
+        wordParts.setAlignmentX(Component.CENTER_ALIGNMENT);
+        wordParts.setFont(new Font("Serif", Font.PLAIN, 18));
 
         //Make label to display errors on
         errorMessage = new JLabel();
@@ -135,12 +150,13 @@ public class MainGUI extends JFrame implements ActionListener {
         mainPanel.add(rulePanel); //SCA User rules
 
         mainPanel.add(generateButton); //Button to generate words
-        mainPanel.add(Box.createVerticalStrut(64));
+        mainPanel.add(Box.createVerticalStrut(32));
         mainPanel.add(displayedWord);
+        mainPanel.add(wordParts);
 
         //Set up window
         setTitle("Language Deriver");
-        setSize(640, 480); //In pixels
+        setSize(768, 576); //In pixels
         setLocationRelativeTo(null); //Centers window
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Tell application to close on window close
         setVisible(true);
@@ -225,6 +241,14 @@ public class MainGUI extends JFrame implements ActionListener {
                 return; //If error, exit
             }
             displayedWord.setText(deriver.makeDerivedWord());
+            //Set wordParts
+            String partsStr = "";
+            String[] deriverParts = deriver.getGeneratedParts();
+            for (int i = 0; i < deriverParts.length; i++) {
+                partsStr += deriverParts[i] + "       ";
+            }
+
+            wordParts.setText("<html><div style = 'text-align: center;'> Derived from:  <br>" + partsStr + "</div></html>");
         }
     }
 

@@ -16,8 +16,10 @@ public class Deriver {
     private int maxSuffixes = 1;
     private int minSuffixes = 1;
 
+    String[] lastGeneratedParts;
 
-    //Accessors
+
+    //Accessors and Setters
     public int getMaxPrefixes() { return maxPrefixes; }
     public int getMinPrefixes() { return minPrefixes; }
     public void setMaxPrefixes(int morphs) { maxPrefixes = morphs; }
@@ -26,6 +28,7 @@ public class Deriver {
     public int getMinSuffixes() { return maxSuffixes; }
     public void setMaxSuffixes(int morphs) { maxSuffixes = morphs; }
     public void setMinSuffixes(int morphs) { maxSuffixes = morphs; }
+    public String[] getGeneratedParts() { return lastGeneratedParts; }
 
 
     //Constructor
@@ -43,33 +46,47 @@ public class Deriver {
     public String makeDerivedWord() {
         StringBuilder baseWord = new StringBuilder(pickRandomFrom(rootSet));
 
-        addMorphemesToBuilder(baseWord, minPrefixes, maxPrefixes, false);
-        addMorphemesToBuilder(baseWord, minSuffixes, maxSuffixes, true);
+        //Calculate amounts of pre and post morphemes
+        int prefixes = getRandom(minPrefixes, maxPrefixes);
+        int suffixes = getRandom(minSuffixes, maxSuffixes);
 
+        //Create new array for wordMorphemesOut
+        String[] wordMorphemesOut = new String[prefixes + suffixes + 1];
+        int place = 0;
+        wordMorphemesOut[wordMorphemesOut.length - (suffixes + 1)] = baseWord.toString();
+
+        //Prefix adding
+        for (; prefixes > 0; prefixes--) {
+            String pre = pickRandomFrom(prefixSet);
+            baseWord.insert(0, pre);
+            wordMorphemesOut[place++] = pre;
+        }
+
+        place++; //Skip for base word
+
+        //Suffix adding
+        for (; suffixes > 0; suffixes--) {
+            String suf = pickRandomFrom(suffixSet);
+            baseWord.append(suf);
+            wordMorphemesOut[place++] = suf;
+        }
+
+        //Convert from StringBuilder to String and run through the SCA
         String word = sca.morphWord(baseWord.toString());
+
+        //wordMorphemesOut becomes lastGeneratedParts
+        lastGeneratedParts = wordMorphemesOut;
 
         return word;
     }
 
-
     //Helper methods
 
-    private void addMorphemesToBuilder(StringBuilder builder, int minMorphs, int maxMorphs, boolean append) {
-        int i;
-        if (minMorphs == maxMorphs) {
-            i = maxMorphs;
+    private int getRandom(int min, int max) {
+        if (min == max) {
+            return min;
         } else {
-            i = ThreadLocalRandom.current().nextInt(minMorphs, maxMorphs);
-        }
-
-        if (append) {
-            for (; i > 0; i--) {
-                builder.append(pickRandomFrom(suffixSet));
-            }
-        } else {
-            for (; i > 0; i--) {
-                builder.insert(0, pickRandomFrom(prefixSet));
-            }
+            return ThreadLocalRandom.current().nextInt(min, max);
         }
     }
 

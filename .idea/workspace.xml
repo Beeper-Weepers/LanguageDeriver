@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/com/company/Deriver.java" line="58" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d71a76fd-8cfc-406d-9560-7a38326af312" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Deriver.java" afterPath="$PROJECT_DIR$/src/com/company/Deriver.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/MainGUI.java" afterPath="$PROJECT_DIR$/src/com/company/MainGUI.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/SCA.java" afterPath="$PROJECT_DIR$/src/com/company/SCA.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/TestMain.java" afterPath="$PROJECT_DIR$/src/com/company/TestMain.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,14 +21,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainGUI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2780">
-              <caret line="226" column="61" lean-forward="false" selection-start-line="226" selection-start-column="61" selection-end-line="226" selection-end-column="61" />
+            <state relative-caret-position="340">
+              <caret line="20" column="48" lean-forward="true" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+                <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+                <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
                 <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
               </folding>
             </state>
@@ -34,22 +39,20 @@
       <file leaf-file-name="Deriver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Deriver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="42" column="37" lean-forward="false" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+            <state relative-caret-position="-612">
+              <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1163#1164#0" expanded="true" />
-                <element signature="e#1193#1194#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SCA.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SCA.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/SCA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="148" column="42" lean-forward="true" selection-start-line="148" selection-start-column="42" selection-end-line="148" selection-end-column="42" />
+            <state relative-caret-position="391">
+              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,8 +63,8 @@
       <file leaf-file-name="TestMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+            <state relative-caret-position="68">
+              <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -90,10 +93,10 @@
         <option value="$PROJECT_DIR$/src/Deriver.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/company/TestMain.java" />
-        <option value="$PROJECT_DIR$/src/com/company/MainGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Deriver.java" />
         <option value="$PROJECT_DIR$/src/com/company/SCA.java" />
+        <option value="$PROJECT_DIR$/src/com/company/TestMain.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Deriver.java" />
+        <option value="$PROJECT_DIR$/src/com/company/MainGUI.java" />
       </list>
     </option>
   </component>
@@ -119,9 +122,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -144,6 +144,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,12 +316,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17948718" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17921527" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14872068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -338,18 +341,52 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/company/MainGUI.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2414">
+          <caret line="226" column="24" lean-forward="false" selection-start-line="226" selection-start-column="24" selection-end-line="226" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Deriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/SCA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2499">
+          <caret line="148" column="9" lean-forward="true" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/MainGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2780">
           <caret line="226" column="61" lean-forward="false" selection-start-line="226" selection-start-column="61" selection-end-line="226" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -361,20 +398,11 @@
           <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/SCA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
@@ -391,7 +419,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -403,20 +432,11 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/SCA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2400">
@@ -433,7 +453,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -445,20 +466,11 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/SCA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1860">
@@ -475,7 +487,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -487,8 +500,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -509,7 +520,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -521,8 +533,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -543,7 +553,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -555,8 +566,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -577,7 +586,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -589,8 +599,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -611,7 +619,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -623,8 +632,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -645,7 +652,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -657,8 +665,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -679,7 +685,8 @@
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -691,8 +698,6 @@
           <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -713,7 +718,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -725,8 +731,6 @@
           <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -747,7 +751,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -759,8 +764,6 @@
           <caret line="32" column="68" lean-forward="false" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -771,7 +774,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -783,8 +787,6 @@
           <caret line="26" column="55" lean-forward="true" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -795,7 +797,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -807,8 +810,6 @@
           <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -819,7 +820,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
             <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
@@ -831,50 +833,47 @@
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Deriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="42" column="37" lean-forward="false" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1193#1194#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/MainGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2780">
-          <caret line="226" column="61" lean-forward="false" selection-start-line="226" selection-start-column="61" selection-end-line="226" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#MainGUI#0;class#MainGUI#0" expanded="false" />
-            <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/TestMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SCA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="148" column="42" lean-forward="true" selection-start-line="148" selection-start-column="42" selection-end-line="148" selection-end-column="42" />
+        <state relative-caret-position="391">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Deriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/MainGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="48" lean-forward="true" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#Category#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#fillSets#0;class#MainGUI#0" expanded="false" />
+            <element signature="method#askUserFile#0;class#MainGUI#0" expanded="false" />
           </folding>
         </state>
       </provider>
