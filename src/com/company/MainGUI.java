@@ -18,7 +18,6 @@ import java.awt.Toolkit;
 /*      Features we want to add:
     * Rule application percentage chances for sporadic sound changes
     * User variable support in the replacement of rules
-    * Copying word to clipboard
     * Allow for part definition in file
     * Allow for scrolling in rules and variables
 */
@@ -243,6 +242,9 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
     //Evaluate actions
+    private StringBuilder derivedTextHead = new StringBuilder("<html><div style = 'text-align: center;'>Derived from: ");
+    private StringBuilder derivedTextTail = new StringBuilder("<br></div></html>");
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -250,15 +252,21 @@ public class MainGUI extends JFrame implements ActionListener {
             if (updateDeriver()) {
                 return; //If error, exit
             }
+
+            //Set the displayed word to a new generated word
             displayedWord.setText(deriver.makeDerivedWord());
-            //Set wordParts
-            String partsStr = "";
+
+            //Set text to JLabel of parts of words
+            StringBuilder partsStr = new StringBuilder();
             String[] deriverParts = deriver.getGeneratedParts();
-            for (int i = 0; i < deriverParts.length; i++) {
-                partsStr += deriverParts[i] + "       ";
+            for (String part : deriverParts) {
+                partsStr.append(part);
+                partsStr.append("       ");
             }
 
-            wordParts.setText("<html><div style = 'text-align: center;'> Derived from:  <br>" + partsStr + "</div></html>");
+            partsStr.insert(0, derivedTextHead);
+            partsStr.append(derivedTextTail);
+            wordParts.setText(partsStr.toString());
         } else if (source == copyButton && !displayedWord.getText().isEmpty()) {
             //Copy to clipboard
             StringSelection stringSelection = new StringSelection(displayedWord.getText());
